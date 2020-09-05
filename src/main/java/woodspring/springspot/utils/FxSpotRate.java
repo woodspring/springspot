@@ -16,7 +16,9 @@ public class FxSpotRate {
 	private  ArrayList<String> symbolList = new ArrayList<>();
 	private ArrayList<BigDecimal> priceList = new  ArrayList<>();
 	private  ArrayList<String> priceStrList = new ArrayList<>();
+	private  ArrayList<String> tenorStrList = new ArrayList<>();
 	private int size =0;
+	private int tenorSize =0;
 			
 			
 	public FxSpotRate() {
@@ -25,8 +27,11 @@ public class FxSpotRate {
 		priceList.add(new BigDecimal("1.3225"));
 		priceList.add(new BigDecimal("105.8860"));
 		priceList.add(new BigDecimal("80.0670"));
+		tenorStrList.add("ON");tenorStrList.add("TN"); tenorStrList.add("SN");tenorStrList.add("TOM");
+		tenorStrList.add("1W");	tenorStrList.add("1M");	tenorStrList.add("2W"); tenorStrList.add("2M"); tenorStrList.add("3M");
+		tenorStrList.add("6M");tenorStrList.add("9M");tenorStrList.add("1Y");
 		size = symbolList.size();
-		
+		tenorSize = tenorStrList.size();
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -43,6 +48,8 @@ public class FxSpotRate {
 		retFx.setQuoteTime( System.nanoTime());
 		priceList.remove(ind);
 		priceList.add(ind, retFx.getPrice());
+		retFx.setTenor(tenorStrList.get( ((int) (Math.random() * tenorSize))));
+		
 		//retFx.setPriceStr( retFx.getPrice().setScale(6, BigDecimal.ROUND_DOWN).toString());
 		//logger.info("ind:{} FXSpot:{}", ind, retFx.toString());
 		return retFx;
