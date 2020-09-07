@@ -22,14 +22,18 @@ public class FxSpotRate {
 			
 			
 	public FxSpotRate() {
-		symbolList.add("EURUSD");symbolList.add("USDCAD");symbolList.add("USDJPY");symbolList.add("CADJPY");
-		priceList.add(new BigDecimal("1.1805"));
-		priceList.add(new BigDecimal("1.3225"));
-		priceList.add(new BigDecimal("105.8860"));
-		priceList.add(new BigDecimal("80.0670"));
+		symbolList.add("EURUSD");priceList.add(new BigDecimal("1.1805"));
+		symbolList.add("USDCAD");priceList.add(new BigDecimal("1.3225"));
+		symbolList.add("USDJPY");priceList.add(new BigDecimal("105.8860"));
+		symbolList.add("CADJPY");priceList.add(new BigDecimal("80.0670"));
+		symbolList.add("EURUSD");priceList.add(new BigDecimal("1.1805"));
+		symbolList.add("USDCAD");priceList.add(new BigDecimal("1.3225"));
+		symbolList.add("EURUSD");priceList.add(new BigDecimal("1.1805"));
 		tenorStrList.add("ON");tenorStrList.add("TN"); tenorStrList.add("SN");tenorStrList.add("TOM");
-		tenorStrList.add("1W");	tenorStrList.add("1M");	tenorStrList.add("2W"); tenorStrList.add("2M"); tenorStrList.add("3M");
-		tenorStrList.add("6M");tenorStrList.add("9M");tenorStrList.add("1Y");
+		tenorStrList.add("1W");tenorStrList.add("1M");	tenorStrList.add("2W"); tenorStrList.add("2M");
+		tenorStrList.add("3M");tenorStrList.add("6M");tenorStrList.add("9M");tenorStrList.add("1Y");
+		tenorStrList.add("ON");tenorStrList.add("ON");tenorStrList.add("ON");tenorStrList.add("TN");
+		tenorStrList.add("ON");tenorStrList.add("SN");tenorStrList.add("TOM");tenorStrList.add("1W");
 		size = symbolList.size();
 		tenorSize = tenorStrList.size();
 	}
