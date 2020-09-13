@@ -22,8 +22,8 @@ public class SpotServiceImpl implements SpotService {
 
 	@Override
 	public FXSpot createQuote(FXSpot fxQuote) {
-		// TODO Auto-generated method stub
-		return null;
+		FXSpot fxSpot = fxRate.createFXSpot(fxQuote);
+		return fxSpot;
 	}
 
 	@Override

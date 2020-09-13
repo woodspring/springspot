@@ -66,7 +66,7 @@ public class FxSpotKey implements Comparable<FxSpotKey>{
 					retI = comp2;
 				}
 			}
-			logger.info( "compareTo {}: key:{} - hc:{}, key2:{}, hs2:{}",  retI, this.toString(), this.hashCode(), o.toString(), o.hashCode());
+			//logger.info( "compareTo {}: key:{} - hc:{}, key2:{}, hs2:{}",  retI, this.toString(), this.hashCode(), o.toString(), o.hashCode());
 			return retI;
 		}
 }

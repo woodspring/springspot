@@ -1,16 +1,18 @@
 package woodspring.springspot.model;
 
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 
 import lombok.Data;
 
 //@Data
 public class FXSpot {
-	
+	static final DecimalFormat f = new DecimalFormat("##.00000000");
 	private String symbol;
 	private BigDecimal price;
 	private String tenor;
 	private long quoteTime;
+	private String pxStr;
 	//private int notation;
 	public String getSymbol() {
 		return symbol;
@@ -23,6 +25,10 @@ public class FXSpot {
 	}
 	public void setPrice(BigDecimal price) {
 		this.price = price;
+		this.pxStr = f.format(price);
+	}
+	public String getPriceString() {
+		return pxStr;
 	}
 	@Override
 	public String toString() {
