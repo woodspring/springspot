@@ -38,6 +38,8 @@ public class FxSpotRate {
 		symbolList.add("EURUSD");priceList.add(new BigDecimal("1.1805"));
 		symbolList.add("USDCAD");priceList.add(new BigDecimal("1.3225"));
 		symbolList.add("EURUSD");priceList.add(new BigDecimal("1.1805"));
+		symbolList.add("USDCAD");priceList.add(new BigDecimal("1.3525"));
+		symbolList.add("EURUSD");priceList.add(new BigDecimal("1.2005"));
 		tenorStrList.add("ON");tenorStrList.add("TN"); tenorStrList.add("SN");tenorStrList.add("TOM");
 		tenorStrList.add("1W");tenorStrList.add("1M");	tenorStrList.add("2W"); tenorStrList.add("2M");
 		tenorStrList.add("3M");tenorStrList.add("6M");tenorStrList.add("9M");tenorStrList.add("1Y");

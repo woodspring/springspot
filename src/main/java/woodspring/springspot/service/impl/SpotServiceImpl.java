@@ -16,10 +16,12 @@ public class SpotServiceImpl implements SpotService {
 	
 	@Autowired
 	FxSpotRate fxRate;
+	
+	private final int randseed = 550;
 
 	@Override
 	public List<FXSpot> listQoute() {
-		int num = (int)(Math.random()*550);
+		int num = (int)(Math.random()*randseed);
 		List<FXSpot> retList = fxRate.getFxQuote( num);
 		return retList;
 	}
@@ -32,7 +34,7 @@ public class SpotServiceImpl implements SpotService {
 
 	@Override
 	public List<FXSpot> getQuote(String symbol) {
-		int num = (int)(Math.random()*50);
+		int num = (int)(Math.random()*randseed);
 		List<FXSpot> retList = null;
 		if ( symbol == null) {
 			retList = fxRate.getFxQuote(num);
@@ -44,7 +46,7 @@ public class SpotServiceImpl implements SpotService {
 
 	@Override
 	public List<FXSpot> getQuote(String symbol, String tenor) {
-		int num = (int)(Math.random()*50);
+		int num = (int)(Math.random()*randseed);
 		List<FXSpot> retList = fxRate.queryQuote(symbol, tenor);
 		return retList;
 	}
