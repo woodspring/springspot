@@ -86,8 +86,7 @@ logger.info("in Call;-0- key:[{}], retFxSpot:[{}]", key, retFxSpot);
 					}
 			});
 		}
-		Collection<FXSpot> result = ignite.compute().call( calls);
-		
+		Collection<FXSpot> result = ignite.compute().call( calls);		
 		
 		return result;
 	}
