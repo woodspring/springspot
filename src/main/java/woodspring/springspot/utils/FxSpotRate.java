@@ -9,9 +9,10 @@ import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-
+import woodspring.springspot.dao.IgniteDAO;
 import woodspring.springspot.model.FXSpot;
 import woodspring.springspot.model.FxSpotKey;
 import woodspring.springspot.model.SymbolTenor;
@@ -29,7 +30,9 @@ public class FxSpotRate {
 	private ConcurrentSkipListMap<FxSpotKey, FXSpot> quoteMap = new ConcurrentSkipListMap<>();
 	private ConcurrentSkipListMap<SymbolTenor, ConcurrentSkipListMap<String, ArrayList<FXSpot>>> quoteSTMap = new ConcurrentSkipListMap<>();
 			
-			
+	//@Autowired
+	private IgniteDAO igniteDao;
+	
 	public FxSpotRate() {
 		symbolList.add("EURUSD");priceList.add(new BigDecimal("1.1805"));
 		symbolList.add("USDCAD");priceList.add(new BigDecimal("1.3225"));
@@ -49,6 +52,7 @@ public class FxSpotRate {
 		tenorStrList.add("ON");tenorStrList.add("ON");tenorStrList.add("ON");tenorStrList.add("ON");
 		size = symbolList.size();
 		tenorSize = tenorStrList.size();
+		igniteDao = new IgniteDAO();
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -119,15 +123,28 @@ public class FxSpotRate {
 		for ( int ind=0; ind< qNum; ind++) {
 			listQuote.add( getSymbol());
 		}
+		igniteDao.putListToCache(listQuote);
 		return listQuote;
 		
 	}
+	
+	public List<FXSpot> cachedFxQuote(int qNum) {
+		List<FXSpot> listQuote = new ArrayList<>();
+		for ( int ind=0; ind< qNum; ind++) {
+			listQuote.add( getSymbol());
+		}
+		igniteDao.putListToCache(listQuote);
+		return listQuote;
+		
+	}
+
 	
 	public List<FXSpot> getFxQuote(String symbol, int qNum) {
 		List<FXSpot> listQuote = new ArrayList<>();
 		for ( int ind=0; ind< qNum; ind++) {
 			listQuote.add( getSymbol(symbol));
 		}
+		igniteDao.putListToCache(listQuote);
 		return listQuote;		
 	}
 	
@@ -199,5 +216,10 @@ logger.info("queryQuote:{},{}", symbol, tenor);
 		
 	}
 
+	public List<FXSpot> callQuotes() {
+		List<FXSpot> retList = igniteDao.startCall().stream().collect(Collectors.toList());
+		return retList;
+		
+	}
 
 }

@@ -2,6 +2,8 @@ package woodspring.springspot.service.impl;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,6 +15,7 @@ import woodspring.springspot.model.SymbolTenor;
 
 @Service
 public class SpotServiceImpl implements SpotService {
+	private static final Logger logger = LoggerFactory.getLogger(SpotServiceImpl.class );
 	
 	@Autowired
 	FxSpotRate fxRate;
@@ -32,6 +35,13 @@ public class SpotServiceImpl implements SpotService {
 		return fxSpot;
 	}
 
+	@Override
+	public List<FXSpot> getQuote() {
+		List<FXSpot> retList = fxRate.callQuotes();
+		logger.info("============================================================Call from FxCache:{}"+ retList);
+		return retList;
+	}
+	
 	@Override
 	public List<FXSpot> getQuote(String symbol) {
 		int num = (int)(Math.random()*randseed);

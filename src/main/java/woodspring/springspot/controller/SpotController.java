@@ -50,6 +50,14 @@ public class SpotController {
 		return retList;
 	}
 	
+	@GetMapping("/Call")
+	@ResponseBody
+	public List<FXSpot> callFxQuote() {
+		String symbol = null;
+		List<FXSpot> retList = spotService.getQuote();
+		return retList;
+	}
+	
 	@GetMapping("/Quote/{symbol}")
 	public List<FXSpot> requestQoute(@PathVariable String symbol) {
 		List<FXSpot> retList = spotService.getQuote( symbol);
